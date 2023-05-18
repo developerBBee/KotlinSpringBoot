@@ -4,6 +4,7 @@ import com.book.manager.infrastructure.database.mapper.*
 import com.book.manager.infrastructure.database.record.BookRecord
 import com.book.manager.infrastructure.database.record.BookWithRentalRecord
 import org.springframework.stereotype.Repository
+import java.time.LocalDate
 
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
 @Repository
@@ -23,6 +24,17 @@ class BookRepositoryImpl(
 
     override fun register(book: Book) {
         bookMapper.insert(toRecord(book))
+    }
+
+    override fun update(id: Long, title: String?, author: String?, releaseDate: LocalDate?) {
+        bookMapper.updateByPrimaryKeySelective(
+            BookRecord(
+                id = id,
+                title = title,
+                author = author,
+                releaseDate = releaseDate
+            )
+        )
     }
 
     private fun toModel(record: BookWithRentalRecord): BookWithRental {
