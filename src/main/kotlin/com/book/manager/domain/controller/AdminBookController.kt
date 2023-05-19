@@ -1,12 +1,7 @@
 package com.book.manager.domain.controller
 
 import com.book.manager.domain.service.AdminBookService
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("admin/book")
@@ -22,5 +17,10 @@ class AdminBookController(
     @PutMapping("/update")
     fun update(@RequestBody request: UpdateBookRequest) {
         adminBookService.update(request.id, request.title, request.author, request.releaseDate)
+    }
+
+    @DeleteMapping("/delete/{book_id}")
+    fun delete(@PathVariable("book_id") bookId: Long) {
+        adminBookService.delete(bookId)
     }
 }

@@ -37,6 +37,10 @@ class BookRepositoryImpl(
         )
     }
 
+    override fun delete(id: Long) {
+        bookMapper.deleteByPrimaryKey(id)
+    }
+
     private fun toModel(record: BookWithRentalRecord): BookWithRental {
         return BookWithRental(
             book = Book(
