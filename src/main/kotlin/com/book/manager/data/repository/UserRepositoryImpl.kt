@@ -2,6 +2,7 @@ package com.book.manager.data.repository
 
 import com.book.manager.infrastructure.database.mapper.UserDynamicSqlSupport
 import com.book.manager.infrastructure.database.mapper.UserMapper
+import com.book.manager.infrastructure.database.mapper.selectByPrimaryKey
 import com.book.manager.infrastructure.database.mapper.selectOne
 import com.book.manager.infrastructure.database.record.UserRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
@@ -16,6 +17,11 @@ class UserRepositoryImpl(
         val record = mapper.selectOne{
             where(UserDynamicSqlSupport.User.email, isEqualTo(email))
         }
+        return record?.let { toModel(it) }
+    }
+
+    override fun find(id: Long): User? {
+        val record = mapper.selectByPrimaryKey(id)
         return record?.let { toModel(it) }
     }
 
