@@ -40,7 +40,8 @@ out/
 .DS_Store
 
 ### Docker ###
-docker/
+docker/*
+!docker/docker-compose.yml
 
 ### Other ###
 cookie.txt
