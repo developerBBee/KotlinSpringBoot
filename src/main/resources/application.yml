@@ -6,3 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jackson:
     property-naming-strategy: SNAKE_CASE
+# Configure logging with AOP(Aspect Oriented Programming)
+logging:
+  level:
+    root: INFO
